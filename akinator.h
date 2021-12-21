@@ -88,5 +88,5 @@ void Dump(Node* node);
 /// </summary>
 /// <param name="node">Transmitted root of the tree</param>
 /// <param name="file">File for writing data</param>
-/// <returns></returns>
+/// <returns>Number of writed node</returns>
 int DrawTree(Node* node, FILE* file);
