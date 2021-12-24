@@ -25,7 +25,7 @@ int main()
     fclose(file);
 
     Node* akinator = CreateNode();
-    ReadFile(akinator, text, syms - 1);
+    ReadFile(akinator, text);
     Akinator(akinator);
     FILE* file2 = fopen("tree_data.txt", "w");
     if (file2 == NULL)

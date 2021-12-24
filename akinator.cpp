@@ -122,7 +122,7 @@ int WriteTree(Node* node, FILE* file){
 }
 
 
-int ReadFile(Node* node, char* text, int sym){
+int ReadFile(Node* node, char* text){
     ValidPtr(text);
     LastNode(node);
     static int i = 1;
@@ -131,11 +131,11 @@ int ReadFile(Node* node, char* text, int sym){
     if (text[i] == '('){
         node->left = CreateNode();
         i++;
-        ReadFile(node->left, text, sym);
-        ReadFile(node, text, sym);
+        ReadFile(node->left, text);
+        ReadFile(node, text);
         node->right = CreateNode();
         i++;
-        ReadFile(node->right, text, sym);
+        ReadFile(node->right, text);
     }
     else{
         ind = i;

@@ -73,7 +73,7 @@ int WriteTree(Node* node, FILE* file);
 /// <param name="text">Data array</param>
 /// <param name="sym">Number of symbols</param>
 /// <returns>-1 if an error occured, else 0</returns>
-int ReadFile(Node* node, char* text, int sym);
+int ReadFile(Node* node, char* text);
 
 
 /// <summary>
