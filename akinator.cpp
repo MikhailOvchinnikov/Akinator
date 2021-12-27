@@ -1,19 +1,21 @@
-//Header from the SortOnegin project
+//Header from the SortOnegin project and it is at C:\Users\DELL\source\repos\Sort_Onegin\Sort_Onegin\sort_text.h
 #include "..\..\Sort_Onegin\Sort_Onegin\sort_text.h"
-//Header from the Stack project
-#include "C:\Users\DELL\source\repos\Stack_dinamic\Stack_dinamic\stack.h"
+//Header from the Stack project and it is at C:\Users\DELL\source\repos\Stack_dinamic\Stack_dinamic\stack.h
+#include "..\..\Stack_dinamic\Stack_dinamic\stack.h"
 #include "akinator.h"
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 #include <stdarg.h>
 
+const unsigned int SIZE_FIELD = 100;
+
 #define ValidPtr(ptr) if(!ptr) {errno = ErrorCode::ERRPTR; return -1;}
 #define LastNode(ptr) if(!ptr) {return 0;}
 
 
 typedef struct Node {
-    char field[100] = {};
+    char field[SIZE_FIELD] = {};
     Node* left;
     Node* right;
 } Node;
@@ -80,9 +82,9 @@ int NewAkElem(Node* node){
     node->right = CreateNode();
     if (node->left == NULL || node->right == NULL)
         return -1;
-    strncpy(node->left->field, node->field, 100);
-    strncpy(node->right->field, new_hero, 100);
-    strncpy(node->field, answer, 100);
+    strncpy(node->left->field, node->field, SIZE_FIELD);
+    strncpy(node->right->field, new_hero, SIZE_FIELD);
+    strncpy(node->field, answer, SIZE_FIELD);
     return 0;
 }
 
@@ -127,7 +129,7 @@ int ReadFile(Node* node, char* text){
     ValidPtr(text);
     LastNode(node);
     static int i = 1;
-    char temp_str[100] = {};
+    char temp_str[SIZE_FIELD] = {};
     int ind = 0;
     if (text[i] == '('){
         node->left = CreateNode();
@@ -145,7 +147,7 @@ int ReadFile(Node* node, char* text){
             i++;
         }
         temp_str[i - ind] = '\0';
-        strncpy(node->field, temp_str, 100);
+        strncpy(node->field, temp_str, SIZE_FIELD);
         while (text[i] == ')')
             i++;
     }
@@ -173,7 +175,6 @@ int Dump(Node* node){
 
 int DrawTree(Node* node, FILE* file) {
     ValidPtr(file);
-    LastNode(node);
     static int i = 0;
     if (node->left == NULL && node->right == NULL) {
         fprintf(file, "\t\"box %d\" [shape=plaintext, label=<\n<table>\n\t", i);

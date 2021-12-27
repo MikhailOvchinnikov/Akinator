@@ -11,16 +11,14 @@
 
 
 
-int main()
-{
-
+int main(){
     FILE* file = fopen("tree_data_l.txt", "rb");
     if (file == NULL)
-    {
         errno = ErrorCode::ERRFILE;
-    }
     int syms = CountSymbols(file);
     char* text = (char*)calloc((syms + 1), sizeof(char));
+    if (text == NULL)
+        errno = ErrorCode::ERRALLOC;
     GetParametersTree(file, text, syms);
     fclose(file);
 
@@ -29,9 +27,7 @@ int main()
     Akinator(akinator);
     FILE* file2 = fopen("tree_data.txt", "w");
     if (file2 == NULL)
-    {
         errno = ErrorCode::ERRFILE;
-    }
     WriteTree(akinator, file2);
     fclose(file2);
     Dump(akinator);
