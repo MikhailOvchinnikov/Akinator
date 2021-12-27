@@ -1,0 +1,1 @@
+(((Table)Can you sit on this subject?(Chair))Is it animal?(((Fish)Has it a legs?(Frog))Is it predator?((Croco)Has it a mane?(Lion))))
