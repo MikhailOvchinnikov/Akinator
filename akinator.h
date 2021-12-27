@@ -1,7 +1,7 @@
 #pragma once
 #include <stdio.h>
 
-extern struct Node;
+typedef struct Node Node;
 
 enum ErrorCode {
 	ERRFILE = 1,
@@ -80,7 +80,18 @@ int ReadFile(Node* node, char* text);
 /// Write tree in the dot format for png view
 /// </summary>
 /// <param name="node">Transmitted root of the tree</param>
-void Dump(Node* node);
+/// <returns>-1 if an error occured, else 0</returns>
+int Dump(Node* node);
+
+
+/// <summary>
+/// Write branches between nodes of grafic tree
+/// </summary>
+/// <param name="node">Transmitted root of the tree</param>
+/// <param name="file">ransmitted pointer to a file</param>
+/// <param name="stack">Transmitted pointer to a stack</param>
+/// <returns>-1 if an error occured, else 0</returns>
+int DrawWays(Node* node, FILE* file, Stack* stack);
 
 
 /// <summary>

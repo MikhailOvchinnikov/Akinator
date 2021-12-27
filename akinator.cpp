@@ -42,6 +42,7 @@ Node* CreateNode(){
 
 int GetParametersTree(FILE* file, char* text, int syms){
     ValidPtr(text);
+    ValidPtr(file);
     if (fread(text, 1, syms, file) != syms){
         errno = ErrorCode::ERRREADFILE;
         return -1;
@@ -152,9 +153,29 @@ int ReadFile(Node* node, char* text){
 }
 
 
-int DrawTree(Node* node, FILE* file){
+int Dump(Node* node){
+    ValidPtr(node);
+    FILE* file = fopen("akinator_graf.txt", "w");
+
+    fprintf(file, "digraph List {\n");
+    fprintf(file, "rankdir=TB;\n");
+
+    DrawTree(node, file);
+
+    Stack* stack = CreateStack("stack");
+    DrawWays(node, file, stack);
+    ClearStk(stack);
+    fprintf(file, "}\n");
+    fclose(file);
+    return 0;
+}
+
+
+int DrawTree(Node* node, FILE* file) {
+    ValidPtr(file);
+    LastNode(node);
     static int i = 0;
-    if (node->left == NULL && node->right == NULL){
+    if (node->left == NULL && node->right == NULL) {
         fprintf(file, "\t\"box %d\" [shape=plaintext, label=<\n<table>\n\t", i);
         fprintf(file, "<tr><td colspan='2' port='field'>%s</td></tr><tr><td port='left'>NULL</td><td port='right'>NULL</td></tr>\n\t",
             node->field);
@@ -173,7 +194,9 @@ int DrawTree(Node* node, FILE* file){
 }
 
 
-int DrawWays(Node* node, FILE* file, Stack* stack){
+int DrawWays(Node* node, FILE* file, Stack* stack) {
+    ValidPtr(file);
+    ValidPtr(stack);
     if (node->left == NULL && node->right == NULL)
         return 0;
     static int i = 0;
@@ -187,20 +210,4 @@ int DrawWays(Node* node, FILE* file, Stack* stack){
     i++;
     DrawWays(node->right, file, stack);
     return 0;
-}
-
-
-void Dump(Node* node){
-    FILE* file = fopen("akinator_graf.txt", "w");
-
-    fprintf(file, "digraph List {\n");
-    fprintf(file, "rankdir=TB;\n");
-
-    DrawTree(node, file);
-
-    Stack* stack = CreateStack("stack");
-    DrawWays(node, file, stack);
-    ClearStk(stack);
-    fprintf(file, "}\n");
-    fclose(file);
 }
