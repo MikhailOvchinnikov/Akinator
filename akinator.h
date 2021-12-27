@@ -75,6 +75,13 @@ int WriteTree(Node* node, FILE* file);
 /// <returns>-1 if an error occured, else 0</returns>
 int ReadFile(Node* node, char* text);
 
+/// <summary>
+/// Clear a tree
+/// </summary>
+/// <param name="node">Transmitted root of a tree</param>
+/// <returns>0</returns>
+int ClearTree(Node* node);
+
 
 /// <summary>
 /// Write tree in the dot format for png view

@@ -32,4 +32,5 @@ int main(){
     fclose(file2);
     Dump(akinator);
     free(text);
+    ClearTree(akinator);
 }

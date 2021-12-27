@@ -64,14 +64,14 @@ int ReadTree(Node* node){
 
 int NewAkElem(Node* node){
     ValidPtr(node);
-    char new_hero[50] = {};
-    char answer[50] = {};
+    char new_hero[SIZE_FIELD] = {};
+    char answer[SIZE_FIELD] = {};
     printf("What did you wish for?\n");
     scanf("%s", new_hero);
     printf("Write a question to define a difference between %s and %s\n", new_hero, node->field);
     getchar();
     char sym = 0;
-    for (int i = 0; i < 50; i++){
+    for (int i = 0; i < SIZE_FIELD; i++){
         if ((sym = getchar()) == '\n'){
             answer[i] = '\0';
             break;
@@ -91,7 +91,7 @@ int NewAkElem(Node* node){
 
 int Akinator(Node* node){
     LastNode(node);
-    char answer[50] = {};
+    char answer[SIZE_FIELD] = {};
     printf("%s\n", node->field);
     if (node->left != NULL && node->right != NULL)
         scanf("%s", answer);
@@ -151,6 +151,15 @@ int ReadFile(Node* node, char* text){
         while (text[i] == ')')
             i++;
     }
+    return 0;
+}
+
+
+int ClearTree(Node* node){
+    LastNode(node);
+    ClearTree(node->left);
+    ClearTree(node->right);
+    free(node);
     return 0;
 }
 
