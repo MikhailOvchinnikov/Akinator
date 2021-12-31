@@ -1,8 +1,7 @@
-
-//Header from the SortOnegin project
+//Header from the Stack project and it is at C:\Users\DELL\source\repos\Stack_dinamic\Stack_dinamic\stack.h
+#include "..\..\Stack_dinamic\Stack_dinamic\stack.h"
+//Header from the SortOnegin project and it is at C:\Users\DELL\source\repos\Sort_Onegin\Sort_Onegin\sort_text.h
 #include "..\..\Sort_Onegin\Sort_Onegin\sort_text.h"
-//Header from the Stack project
-#include "C:\Users\DELL\source\repos\Stack_dinamic\Stack_dinamic\stack.h"
 #include "akinator.h"
 #include <stdio.h>
 #include <string.h>
