@@ -12,7 +12,7 @@
 
 
 int main(){
-    FILE* file = fopen("tree_data_l.txt", "rb");
+    FILE* file = fopen("tree_data.txt", "rb");
     if (file == NULL)
         errno = ErrorCode::ERRFILE;
     int syms = CountSymbols(file);

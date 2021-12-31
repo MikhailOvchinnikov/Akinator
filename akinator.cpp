@@ -142,7 +142,7 @@ int ReadFile(Node* node, char* text){
     }
     else{
         ind = i;
-        while (text[i] != ')' && text[i] != '('){
+        while (!strchr(")(", text[i])){
             temp_str[i - ind] = text[i];
             i++;
         }
